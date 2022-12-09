@@ -1,4 +1,4 @@
-package ms;
+package ms.sort;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;

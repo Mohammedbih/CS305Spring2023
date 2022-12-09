@@ -1,5 +1,7 @@
-package ms;
+package ms.mergesort;
 
+import java.util.Random;
+import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -7,17 +9,18 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import javax.swing.*;
-import java.util.Random;
-
-public class GCD_GUI extends javax.swing.JFrame {
+/**
+ *
+ * @author hp
+ */
+public class Sort_GUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GCD_GUI
      */
-    public GCD_GUI() {
+    public Sort_GUI() {
         initComponents();
-        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -31,8 +34,6 @@ public class GCD_GUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         num1 = new javax.swing.JTextField();
-        num2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         calcBtn = new javax.swing.JButton();
         plotBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -42,22 +43,18 @@ public class GCD_GUI extends javax.swing.JFrame {
         resTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("GCD");
+        setTitle("MergeSort");
         setBackground(new java.awt.Color(204, 204, 255));
         setForeground(new java.awt.Color(153, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Num1:");
-
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel2.setText("Num2:");
+        jLabel1.setText("Array seperated by space:");
 
         calcBtn.setBackground(new java.awt.Color(204, 204, 204));
         calcBtn.setFont(new java.awt.Font("Sitka Subheading", 1, 12)); // NOI18N
         calcBtn.setForeground(new java.awt.Color(0, 102, 102));
-        calcBtn.setText("Caculate GCD");
+        calcBtn.setText("Sort");
         calcBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcBtnActionPerformed(evt);
@@ -98,11 +95,8 @@ public class GCD_GUI extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(num1)
-                                        .addComponent(num2)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                                                 .addGap(141, 141, 141))
                                         .addComponent(calcBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(plotBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -111,14 +105,14 @@ public class GCD_GUI extends javax.swing.JFrame {
                                                 .addGap(10, 10, 10)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(resTime, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                                                .addComponent(resTime, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,19 +122,17 @@ public class GCD_GUI extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(num1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(num2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
+                                .addGap(69, 69, 69)
                                 .addComponent(calcBtn)
-                                .addGap(18, 18, 18)
+                                .addGap(78, 78, 78)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel3)
-                                        .addComponent(result))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(0, 35, Short.MAX_VALUE))
+                                        .addComponent(result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel4)
                                         .addComponent(resTime))
@@ -154,33 +146,42 @@ public class GCD_GUI extends javax.swing.JFrame {
 
     private void calcBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        long a = Long.parseLong(num1.getText());
-        long b = Long.parseLong(num2.getText());
+        String[] s = num1.getText().split(" ");
+        int[] a = new int[s.length];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = Integer.parseInt(s[i]);
+        }
 
         long begien = System.currentTimeMillis();
-        long res = GCD.gcd(a, b);
+        MergeSort mr = new MergeSort(a);
+        mr.sort();
         resTime.setText((System.currentTimeMillis() - begien) + " millis");
-        result.setText(res + "");
+        result.setText(mr.printArray());
 
 
     }
 
+    public static void fillArray(int[] a) {
+        for (int i = 0; i < a.length; i++) {
+//            a[i] = 1 + (int) (Math.random() * 10);
+            a[i] = i;
+        }
+    }
+
     private void plotBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        Random random = new Random();
+
 
         XYSeries series = new XYSeries("XYGraph");
         // Generate 20 arrays with random values
-        for (int i = 1; i <= 10000; i++) {
-            long a = random.nextLong();
-            long b = random.nextLong();
-
-            long start = System.currentTimeMillis();
-            GCD.gcd(a, b);
-            long end = System.currentTimeMillis();
+        for (int i = 1; i <= 50; i++) {
+            int[] a = new int[i * 5000];
+            fillArray(a);
+            long start = System.nanoTime();
+            MergeSort mr = new MergeSort(a);
+            mr.sort();
+            long end = System.nanoTime();
             long time = end - start;
-
-            series.add(i, time);
+            series.add(a.length, time);
         }
 
         // Add the series to your data set
@@ -189,9 +190,9 @@ public class GCD_GUI extends javax.swing.JFrame {
         dataset.addSeries(series);
         // Generate the graph
         JFreeChart chart = ChartFactory.createXYLineChart(
-                "Searching with Linear Search", // Title
+                "Sorting With MergeSort", // Title
                 "Index", // x-axis Label
-                "gcd Time", // y-axis Label
+                "Time", // y-axis Label
                 dataset, // Dataset
                 PlotOrientation.VERTICAL, // Plot Orientation
                 true, // Show Legend
@@ -233,27 +234,28 @@ public class GCD_GUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GCD_GUI.class
+            java.util.logging.Logger.getLogger(Sort_GUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GCD_GUI.class
+            java.util.logging.Logger.getLogger(Sort_GUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GCD_GUI.class
+            java.util.logging.Logger.getLogger(Sort_GUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GCD_GUI.class
+            java.util.logging.Logger.getLogger(Sort_GUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GCD_GUI().setVisible(true);
+                new Sort_GUI().setVisible(true);
             }
         });
     }
@@ -261,12 +263,10 @@ public class GCD_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JButton calcBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField num1;
-    private javax.swing.JTextField num2;
     private javax.swing.JButton plotBtn;
     private javax.swing.JLabel resTime;
     private javax.swing.JLabel result;

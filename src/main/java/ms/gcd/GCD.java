@@ -1,4 +1,4 @@
-package ms;
+package ms.gcd;
 
 public class GCD {
     static long gcd (long a, long b){

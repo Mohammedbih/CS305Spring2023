@@ -1,4 +1,4 @@
-package ms;
+package ms.sort;
 
 import java.util.Arrays;
 
